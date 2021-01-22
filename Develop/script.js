@@ -9,7 +9,11 @@ let taskTimeLimit = moment(taskTime, "h a").add(59, "m").add(59, "s").format("X"
 console.log(taskTimeLimit);
 console.log(moment(taskTimeLimit, "X").format("LTS"));
 
-// loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  (This function will fire upon loading the page so it will towards the top.)
+// loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  
+let loadTasks = function() {
+    let taskContent = localStorage.getItem('data-9am-task');
+    $('9am-task').val() = taskContent; 
+}
 
 
 // colorChange() function will be a for loop that iterates over the textarea elements and applies an if statement that adds the resective color coding class based on a comparison between the current time and the latest time in the hour designated for the row.
@@ -27,8 +31,18 @@ console.log(moment(taskTimeLimit, "X").format("LTS"));
 
 
 // saveTasks() function will set the text value of the text area as a data point in localStorage.
+let saveBtnTest = function() {
+console.log("This is a test");
+}
+
+let saveTasks = function() {
+    localStorage.setItem("data-9-am-task", $('#9am-task').val());
+};
+
 // a click handler for the save button will fire the saveTasks(); function
 
+
+$('#9am-saveBtn').on("click", saveBtnTest());
 
 
 
