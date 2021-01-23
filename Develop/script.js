@@ -1,13 +1,8 @@
 // Define variables up here 
 // Use moment.js to determine the current time of day.  This will be our currentTime variable.
-let currentTime = moment().format("X");
-console.log(currentTime);
+let currentTime = moment().hour("hh").format("hh");
 let taskTime = $("#task-time").text();
-console.log(taskTime);
-
 let taskTimeLimit = moment(taskTime, "h a").add(59, "m").add(59, "s").format("X");
-console.log(taskTimeLimit);
-console.log(moment(taskTimeLimit, "X").format("LTS"));
 
 // loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  
 let loadTasks = function() {
@@ -16,18 +11,37 @@ let loadTasks = function() {
 }
 
 
-// colorChange() function will be a for loop that iterates over the textarea elements and applies an if statement that adds the resective color coding class based on a comparison between the current time and the latest time in the hour designated for the row.
+// colorChange() function will be a for loop that iterates over the textarea elements and applies an if statement that adds and deletes the resective color coding classes based on a comparison between the current time and the hour designated for the row.
 
-// let colorChange = function() {
-// // for loop starts here 
-// for (i = 0; i < 9; i++) {
-// // // If currentTime > the time in the row, then addClass .past  
-// // if (currentTime > )
-// // // if currentTime = the time in the row then addClass .present
+let colorChange = function() {
+// for loop starts here 
+$('.time-block').each(function(){
+    let current = parseInt(currentTime);
+    let hour = parseInt($(this).children('.hour').children('.task-time').text().split(' ')[0]);
+    
+    if (current > hour) {
+        $(this).children('.form-group').children("textarea").addClass('past');
+        $(this).children('.form-group').children("textarea").removeClass('future');
+        $(this).children('.form-group').children("textarea").removeClass('present');
+    } else if (current === hour) {
+        $(this).children('.form-group').children("textarea").addClass('present');
+        $(this).children('.form-group').children("textarea").removeClass('future');
+        $(this).children('.form-group').children("textarea").removeClass('past');
+    } else {
+        $(this).children('.form-group').children("textarea").addClass('future');
+        $(this).children('.form-group').children("textarea").removeClass('present');
+        $(this).children('.form-group').children("textarea").removeClass('past');
+    }
+});
+};
 
-// // //  if current time < the time in the rown then addClass .future
-// // }
-// };
+// run color change using an interval to check the color regularly and update it as needed.
+let colorUpdate = function(){
+    setInterval(function(){colorChange();}, 1000);
+};
+
+colorChange();
+colorUpdate();
 
 
 // saveTasks() function will set the text value of the text area as a data point in localStorage.
