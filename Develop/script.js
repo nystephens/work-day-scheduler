@@ -5,19 +5,38 @@ let taskTime = $("#task-time").text();
 
 $( document ).ready(function() {
 // loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  
-// let loadTasks = function() {
-// //    iterate over each time-block
-//     $('.time-block').each(function(){
-// //      set taskContent variable as storage item's value
-//         let taskContent = localStorage.getItem('task' + i);
-// //      add the value of the storage item into the text for the current time-block
-//         $(this).children('.form-group').children('.form-control').val(taskContent); 
-//         console.log($(this));
-//     });
+let loadTasks = function() {
+//      set taskContent variable as storage item's value
+    let taskContent9am = localStorage.getItem("task-description-9am");
+//      add the value of the storage item into the text for the current time-block
+    $("#9am-task").val(taskContent9am); 
     
-// }
+    let taskContent10am = localStorage.getItem("task-description-10am");
+    $("#10am-task").val(taskContent10am); 
 
-// loadTasks();
+    let taskContent11am = localStorage.getItem("task-description-11am");
+    $("#11am-task").val(taskContent11am); 
+
+    let taskContent12am = localStorage.getItem("task-description-12am");
+    $("#12am-task").val(taskContent12am); 
+
+    let taskContent1pm = localStorage.getItem("task-description-1pm");
+    $("#1pm-task").val(taskContent1pm); 
+
+    let taskContent2pm = localStorage.getItem("task-description-2pm");
+    $("#2pm-task").val(taskContent2pm); 
+
+    let taskContent3pm = localStorage.getItem("task-description-3pm");
+    $("#3pm-task").val(taskContent3pm); 
+
+    let taskContent4pm = localStorage.getItem("task-description-4pm");
+    $("#4pm-task").val(taskContent4pm); 
+
+    let taskContent5pm = localStorage.getItem("task-description-5pm");
+    $("#5pm-task").val(taskContent5pm); 
+}
+
+loadTasks();
 
 
 // colorChange() function will be a for loop that iterates over the textarea elements and applies an if statement that adds and deletes the resective color coding classes based on a comparison between the current time and the hour designated for the row.
