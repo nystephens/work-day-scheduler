@@ -1,7 +1,7 @@
 // Use moment.js to determine the current time of day.  This will be our currentTime variable.
 let currentTime = moment().hour("hh").format("hh");
 let taskTime = $("#task-time").text();
-let taskDataNum = $('.time-block').children('.hour').children('.task-time').text().split(' ')[0];
+// let taskDataNum = $('.time-block').children('.hour').children('.task-time').text().split(' ')[0];
 
 $( document ).ready(function() {
 // loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  
@@ -54,20 +54,54 @@ colorUpdate();
 
 
 
-// saveTasks() function will set the text value of the text area as a data point in localStorage.
-let saveBtnTest = function() {
-console.log("this is a test");
-}
-
-
-
 // a click handler for the save button will fire the saveTasks(); function
 
-$('.btn-container').children('.saveBtn').on('click', function(){
-    localStorage.setItem("task-description-" + taskDataNum, $('.time-block').children('.form-group').children('textarea').val());
+$('#9am-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-9am", $('#9am-task').val());
     console.log(this);
-    $(this).off();
 });
+
+$('#10am-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-10am", $('#10am-task').val());
+    console.log(this);
+});
+
+$('#11am-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-11am", $('#11am-task').val());
+    console.log(this);
+});
+
+$('#12pm-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-12pm", $('#12pm-task').val());
+    console.log(this);
+});
+
+$('#1pm-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-1pm", $('#1pm-task').val());
+    console.log(this);
+});
+
+$('#2pm-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-2pm", $('#2pm-task').val());
+    console.log(this);
+});
+
+$('#3pm-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-3pm", $('#3pm-task').val());
+    console.log(this);
+});
+
+$('#4pm-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-4pm", $('#4pm-task').val());
+    console.log(this);
+});
+
+$('#5pm-saveBtn').on('click', function(){
+    localStorage.setItem("task-description-5pm", $('#5pm-task').val());
+    console.log(this);
+});
+
+// end save click handlers
 
 console.log('the page has loaded')
 // end on load function
