@@ -1,14 +1,23 @@
-// Define variables up here 
 // Use moment.js to determine the current time of day.  This will be our currentTime variable.
 let currentTime = moment().hour("hh").format("hh");
 let taskTime = $("#task-time").text();
-let taskTimeLimit = moment(taskTime, "h a").add(59, "m").add(59, "s").format("X");
+let taskDataNum = $('.time-block').children('.hour').children('.task-time').text().split(' ')[0];
 
+$( document ).ready(function() {
 // loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  
-let loadTasks = function() {
-    let taskContent = localStorage.getItem('data-9am-task');
-    $('9am-task').val() = taskContent; 
-}
+// let loadTasks = function() {
+// //    iterate over each time-block
+//     $('.time-block').each(function(){
+// //      set taskContent variable as storage item's value
+//         let taskContent = localStorage.getItem('task' + i);
+// //      add the value of the storage item into the text for the current time-block
+//         $(this).children('.form-group').children('.form-control').val(taskContent); 
+//         console.log($(this));
+//     });
+    
+// }
+
+// loadTasks();
 
 
 // colorChange() function will be a for loop that iterates over the textarea elements and applies an if statement that adds and deletes the resective color coding classes based on a comparison between the current time and the hour designated for the row.
@@ -44,19 +53,25 @@ colorChange();
 colorUpdate();
 
 
+
 // saveTasks() function will set the text value of the text area as a data point in localStorage.
 let saveBtnTest = function() {
-console.log("This is a test");
+console.log("this is a test");
 }
 
-let saveTasks = function() {
-    localStorage.setItem("data-9-am-task", $('#9am-task').val());
-};
+
 
 // a click handler for the save button will fire the saveTasks(); function
 
+$('.btn-container').children('.saveBtn').on('click', function(){
+    localStorage.setItem("task-description-" + taskDataNum, $('.time-block').children('.form-group').children('textarea').val());
+    console.log(this);
+    $(this).off();
+});
 
-$('#9am-saveBtn').on("click", saveBtnTest());
+console.log('the page has loaded')
+// end on load function
+});
 
 
 
