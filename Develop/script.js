@@ -99,7 +99,6 @@ $('#11am-saveBtn').on('click', function(){
 
 $('#12pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-12pm", $('#12pm-task').val());
-
 });
 
 $('#1pm-saveBtn').on('click', function(){
