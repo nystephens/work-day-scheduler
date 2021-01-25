@@ -1,8 +1,9 @@
 // Use moment.js to determine the current time of day.  This will be our currentTime variable.
 let currentTime = moment().hour("H").format("H");
-let taskTime = $("#task-time").text();
+
 
 $( document ).ready(function() {
+
 // loadTasks(); this function will get the task data from localStorage and then load it into the textarea.  
 let loadTasks = function() {
 //      set taskContent variable as storage item's value
@@ -36,6 +37,16 @@ let loadTasks = function() {
 }
 
 loadTasks();
+
+// this function checks to see if the last save entry was over 24 hours ago, if the last entry is over 24 hours old then local storage is cleared.
+let checkExpiration = function(){
+    let saveTime = parseInt(localStorage.getItem('save-time'));
+        if (saveTime > saveTime + 86400){
+            localStorage.clear();
+        }
+}
+
+setInterval(function(){ checkExpiration(); }, 1000);
 
 
 // colorChange() function will be a for loop that iterates over the textarea elements and applies an if statement that adds and deletes the resective color coding classes based on a comparison between the current time and the hour designated for the row.
@@ -89,38 +100,48 @@ dateUpdate();
 
 $('#9am-saveBtn').on('click', function(){
     localStorage.setItem("task-description-9am", $('#9am-task').val());
+    // set unix timestamp of the time that the task was saved so that it can be compared later to see check if its expired
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#10am-saveBtn').on('click', function(){
     localStorage.setItem("task-description-10am", $('#10am-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#11am-saveBtn').on('click', function(){
     localStorage.setItem("task-description-11am", $('#11am-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#12pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-12pm", $('#12pm-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#1pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-1pm", $('#1pm-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#2pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-2pm", $('#2pm-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#3pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-3pm", $('#3pm-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#4pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-4pm", $('#4pm-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 $('#5pm-saveBtn').on('click', function(){
     localStorage.setItem("task-description-5pm", $('#5pm-task').val());
+    localStorage.setItem("save-time", moment().format("X"));
 });
 
 // end save click handlers
