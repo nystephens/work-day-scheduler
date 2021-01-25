@@ -1,5 +1,5 @@
 // Use moment.js to determine the current time of day.  This will be our currentTime variable.
-let currentTime = moment().hour("hh").format("hh");
+let currentTime = moment().hour("H").format("H");
 let taskTime = $("#task-time").text();
 
 $( document ).ready(function() {
@@ -44,7 +44,7 @@ let colorChange = function() {
 // for loop starts here 
 $('.time-block').each(function(){
     let current = parseInt(currentTime);
-    let hour = parseInt($(this).children('.hour').children('.task-time').text().split(' ')[0]);
+    let hour = parseInt(moment($(this).children('.hour').children('.task-time').text(), "h A").format('H'));
     
     if (current > hour) {
         $(this).children('.form-group').children("textarea").addClass('past');
